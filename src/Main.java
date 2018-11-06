@@ -40,10 +40,10 @@ public class Main {
 						System.out.println("Row: "+point.row+"\nCol: "+point.col+"\n");
 						while(angleInDegree < 180){
 							angleInRadians = (double)angleInDegree/180*Math.PI;
-							//System.out.println("Angle In Radians: " + angleInRadians);
+							System.out.println("Angle In Radians: " + angleInRadians);
 							System.out.println("Angle In Degrees: " + angleInDegree);
 							dist = hough.computeDistance(point, angleInRadians);
-							//System.out.println("Hough Distance: " + dist);
+							System.out.println("Hough Distance: " + dist);
 							distInt = (int)dist;
 							System.out.println("DistInt: " + distInt + "\n");
 							HoughAry[distInt][angleInDegree]++;
