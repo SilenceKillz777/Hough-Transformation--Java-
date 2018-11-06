@@ -23,15 +23,17 @@ public class HoughTransform {
 		double a = angleInRadians;
 		double x = point.col;
 		double y = point.row;
-		double atan = Math.toDegrees(Math.atan(y/x));
-		double halfpi = Math.toDegrees(Math.PI/2);
+		double atan = Math.atan(y/x);
+		double halfpi = Math.PI/2;
 		double t = a-atan-halfpi;
-		double radiant = Math.toRadians(t);
-		System.out.println("This is cos(t): " + t);
-		//System.out.println("X: " + x + "\nY: " + y);
+		System.out.println("X: " + x + "\nY: " + y);
 		System.out.println("Test Negative: "+ a + " " + atan + " "+ halfpi);
-		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*Math.cos(t);
-		System.out.println("This is distance: " + distance);
+		System.out.println("This is t: " + t);
+		System.out.println("This is x squared: "+ Math.pow(x, 2));
+		System.out.println("This is y squared: "+ Math.pow(y, 2));
+		
+		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*(Math.cos(t));
+		//System.out.println("This is distance: " + distance);
 		return distance;
 	}
 	
