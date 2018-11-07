@@ -27,20 +27,11 @@ public class HoughTransform {
 		double halfpi = Math.PI/2;
 		double t = a-atan-halfpi;
 		double radiant = Math.cos(t);
-		//System.out.println("This is t: " + t);
-		//System.out.println("This is cos(t): " + radiant);
-		//System.out.println("toDegrees: " + Math.toDegrees(radiant));
-		//System.out.println("X: " + x + "\nY: " + y);
-		System.out.println("Test Negative: "+ a + " " + atan + " "+ halfpi);
 		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*radiant;
 		return distance;
 	}
 	
 	void prettyPrint(int[][] HoughAry, PrintWriter outFile1){
-		//System.out.println("Hough_dist: " + Hough_dist);
-		//System.out.println("Hough_angle: " + Hough_angle);
-		//System.out.println("HoughMinVal: " + HoughMinVal);
-		//System.out.println("HoughMaxVal: " + HoughMaxVal);
 		for(int row=0; row<Hough_dist; row++){
 			for(int col=0; col<Hough_angle; col++){
 				if(HoughAry[row][col]>0)
@@ -61,4 +52,16 @@ public class HoughTransform {
 		}
 	}
 	
+	void determineMinMax(int[][] HoughAry){
+		HoughMinVal = HoughAry[0][0];
+		HoughMaxVal = HoughAry[0][0];
+		for(int row=0; row<Hough_dist; row++){
+			for(int col=0; col<Hough_angle; col++){
+				if(HoughAry[row][col]>HoughMaxVal)
+					HoughMaxVal = HoughAry[row][col];
+				else if(HoughAry[row][col]<HoughMinVal)
+					HoughMinVal = HoughAry[row][col];
+			}
+		}
+	}
 }
