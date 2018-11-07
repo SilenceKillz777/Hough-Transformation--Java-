@@ -39,7 +39,7 @@ public class Main {
 						angleInDegree = 0;
 						System.out.println("Row: "+point.row+"\nCol: "+point.col+"\n");
 						while(angleInDegree < 180){
-							angleInRadians = (double)angleInDegree/180*Math.PI;
+							angleInRadians = Math.toRadians(angleInDegree);
 							System.out.println("Angle In Radians: " + angleInRadians);
 							System.out.println("Angle In Degrees: " + angleInDegree);
 							dist = hough.computeDistance(point, angleInRadians);

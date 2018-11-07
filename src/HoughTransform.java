@@ -23,15 +23,16 @@ public class HoughTransform {
 		double a = angleInRadians;
 		double x = point.col;
 		double y = point.row;
-		double atan = Math.toDegrees(Math.atan(y/x));
-		double halfpi = Math.toDegrees(Math.PI/2);
+		double atan = Math.toRadians(Math.atan(y/x));
+		double halfpi = Math.PI/2;
 		double t = a-atan-halfpi;
-		double radiant = Math.toRadians(t);
-		System.out.println("This is cos(t): " + t);
+		double radiant = Math.cos(t);
+		//System.out.println("This is t: " + t);
+		//System.out.println("This is cos(t): " + radiant);
+		//System.out.println("toDegrees: " + Math.toDegrees(radiant));
 		//System.out.println("X: " + x + "\nY: " + y);
 		System.out.println("Test Negative: "+ a + " " + atan + " "+ halfpi);
-		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*Math.cos(t);
-		System.out.println("This is distance: " + distance);
+		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*radiant;
 		return distance;
 	}
 	
@@ -42,7 +43,9 @@ public class HoughTransform {
 		//System.out.println("HoughMaxVal: " + HoughMaxVal);
 		for(int row=0; row<Hough_dist; row++){
 			for(int col=0; col<Hough_angle; col++){
-				outFile1.print(HoughAry[row][col]);
+				if(HoughAry[row][col]>0)
+					outFile1.print(".");
+				else outFile1.print(" ");
 			}
 			outFile1.println();
 		}
