@@ -21,14 +21,15 @@ public class Main {
 			maxVal = Integer.parseInt(inFile.next());
 			
 			int[][] imgAry = new int[numRows][numCols];
-			int distInt, angleInDegree, Hough_angle=180, Hough_dist;
+			int distInt, angleInDegree, Hough_angle=180, Hough_dist, maxDistance, offset;
 			double angleInRadians, dist;
 			Hough_dist = (int)Math.sqrt(Math.pow(numRows, 2)+Math.pow(numCols, 2));
-			int[][] HoughAry = new int[Hough_dist][Hough_angle];
+			offset = Hough_dist;
+			int[][] HoughAry = new int[Hough_dist + offset][Hough_angle];
 			Point point = new Point();
 			ImageProcessing process = new ImageProcessing(numRows, numCols, minVal, maxVal, inFile);
 			process.loadImage(imgAry);
-			HoughTransform hough = new HoughTransform(Hough_dist, Hough_angle);
+			HoughTransform hough = new HoughTransform(Hough_dist + offset, Hough_angle);
 			
 			for(int row=0; row<numRows; row++){
 				for(int col=0; col<numCols; col++){
@@ -38,7 +39,7 @@ public class Main {
 						angleInDegree = 0;
 						while(angleInDegree < 180){
 							angleInRadians = Math.toRadians(angleInDegree);
-							dist = hough.computeDistance(point, angleInRadians);
+							dist = hough.computeDistance(point, angleInRadians, offset);
 							distInt = (int)dist;
 							HoughAry[distInt][angleInDegree]++;
 							angleInDegree++;

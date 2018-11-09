@@ -18,16 +18,16 @@ public class HoughTransform {
 		this.Hough_angle = Hough_angle;
 	}
 	
-	double computeDistance(Point point, double angleInRadians){
+	double computeDistance(Point point, double angleInRadians, int offset){
 		double distance = 0;
 		double a = angleInRadians;
 		double x = point.col;
 		double y = point.row;
-		double atan = Math.toRadians(Math.atan(y/x));
+		double atan = Math.atan(y/x);
 		double halfpi = Math.PI/2;
 		double t = a-atan-halfpi;
 		double radiant = Math.cos(t);
-		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*radiant;
+		distance = (Math.sqrt(Math.pow(x,2)+Math.pow(y,2)))*radiant + offset;
 		return distance;
 	}
 	
